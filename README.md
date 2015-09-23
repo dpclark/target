@@ -166,7 +166,8 @@ public interface ProductRepository extends MongoRepository<Product, String> {
         * @see ProductService#findByProductId
         */
         Product findByProductId(Long productId);
-}```
+}
+```
 
 * src/main/java/com/myretail/api/service/ProductServer(Impl).java
   - this interface/class pair is a layer of inderection between the controller and the repository
