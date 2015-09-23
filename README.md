@@ -145,11 +145,12 @@ By placing api as the root of the path I leave open the extension of the POC to 
   - automatically wires up monitoring resources
     - localhost:8080/health produces {"status":"up"}
   - provides enterprise features such as audit and metric monitoring (not leveraged in the poc)
-* `src/main/java/com/myretail/api/domain/ProductRepository.java
+* src/main/java/com/myretail/api/domain/ProductRepository.java
   - by extending the existing MongoRepository interface and adding a few additional methods Spring provides a robust
   - leverages method naming convention findBy<fieldname><modifiers> to allow for east definition of query methods
   - if this convention isn't flexible enough you can expose the template via a bean annotation in the MongoConfig class
-  - ```public interface ProductRepository extends MongoRepository<Product, String> {
+  -
+   ``` public interface ProductRepository extends MongoRepository<Product, String> {
         /**
          * return a list of products filter by the category
          * @param category - the name of the category to filter the product list with
@@ -165,10 +166,10 @@ By placing api as the root of the path I leave open the extension of the POC to 
         */
         Product findByProductId(Long productId);
 }```
-* `src/main/java/com/myretail/api/service/ProductServer(Impl).java
+* src/main/java/com/myretail/api/service/ProductServer(Impl).java
   - this interface/class pair is a layer of inderection between the controller and the repository
   - we can keep this same interface and change the repository without the controller being aware of the change
-* `src/main/java/com/myretail/api/web/ProductController.java
+* src/main/java/com/myretail/api/web/ProductController.java
   - maps the REST end points to the service layer.
   - for the poc I've restricted the request verbs to GETs so no object creation or modification
 
