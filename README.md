@@ -149,8 +149,8 @@ By placing api as the root of the path I leave open the extension of the POC to 
   - by extending the existing MongoRepository interface and adding a few additional methods Spring provides a robust
   - leverages method naming convention findBy<fieldname><modifiers> to allow for east definition of query methods
   - if this convention isn't flexible enough you can expose the template via a bean annotation in the MongoConfig class
-  -
-   ``` public interface ProductRepository extends MongoRepository<Product, String> {
+  
+ ``` public interface ProductRepository extends MongoRepository<Product, String> {
         /**
          * return a list of products filter by the category
          * @param category - the name of the category to filter the product list with
@@ -166,6 +166,7 @@ By placing api as the root of the path I leave open the extension of the POC to 
         */
         Product findByProductId(Long productId);
 }```
+
 * src/main/java/com/myretail/api/service/ProductServer(Impl).java
   - this interface/class pair is a layer of inderection between the controller and the repository
   - we can keep this same interface and change the repository without the controller being aware of the change
