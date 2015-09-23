@@ -20,7 +20,7 @@ such as the size of the store as well as the number of products per store. Those
  In structuring this poc using Spring I followed the Spring best practices in using 'src/main/java...' as well as package names such as domain, service and web to partition the application logic across
  these layers. See the tree output below for the full directory structure.
 
-'''
+```
 .
 +-- build
 ¦   +-- classes
@@ -129,7 +129,7 @@ such as the size of the store as well as the number of products per store. Those
 ¦       ¦               ¦   +-- ProductServiceTest.java
 ¦       ¦               +-- web
 ¦       +-- resources
-'''
+```
 
 In architecting for the web I choose the following URI convention
 
@@ -145,11 +145,11 @@ By placing api as the root of the path I leave open the extension of the POC to 
   - automatically wires up monitoring resources
     - localhost:8080/health produces {"status":"up"}
   - provides enterprise features such as audit and metric monitoring (not leveraged in the poc)
-* 'src/main/java/com/myretail/api/domain/ProductRepository.java
+* `src/main/java/com/myretail/api/domain/ProductRepository.java
   - by extending the existing MongoRepository interface and adding a few additional methods Spring provides a robust
   - leverages method naming convention findBy<fieldname><modifiers> to allow for east definition of query methods
   - if this convention isn't flexible enough you can expose the template via a bean annotation in the MongoConfig class
-  - '''public interface ProductRepository extends MongoRepository<Product, String> {
+  - ```public interface ProductRepository extends MongoRepository<Product, String> {
         /**
          * return a list of products filter by the category
          * @param category - the name of the category to filter the product list with
@@ -164,11 +164,11 @@ By placing api as the root of the path I leave open the extension of the POC to 
         * @see ProductService#findByProductId
         */
         Product findByProductId(Long productId);
-}'''
-* 'src/main/java/com/myretail/api/service/ProductServer(Impl).java
+}```
+* `src/main/java/com/myretail/api/service/ProductServer(Impl).java
   - this interface/class pair is a layer of inderection between the controller and the repository
   - we can keep this same interface and change the repository without the controller being aware of the change
-* 'src/main/java/com/myretail/api/web/ProductController.java
+* `src/main/java/com/myretail/api/web/ProductController.java
   - maps the REST end points to the service layer.
   - for the poc I've restricted the request verbs to GETs so no object creation or modification
 
