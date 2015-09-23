@@ -150,7 +150,8 @@ By placing api as the root of the path I leave open the extension of the POC to 
   - leverages method naming convention findBy<fieldname><modifiers> to allow for east definition of query methods
   - if this convention isn't flexible enough you can expose the template via a bean annotation in the MongoConfig class
   
- ``` public interface ProductRepository extends MongoRepository<Product, String> {
+```java 
+public interface ProductRepository extends MongoRepository<Product, String> {
         /**
          * return a list of products filter by the category
          * @param category - the name of the category to filter the product list with
